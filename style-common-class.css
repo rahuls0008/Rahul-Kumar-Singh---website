@@ -1,0 +1,241 @@
+
+/* Common Margin Classes */
+
+.mb75px {
+    margin-bottom: 75px;
+}
+
+.m0 {
+    margin: 0px;
+}
+
+
+/*common text highlight */
+
+.text-highlight {
+    color: #2857a4;
+    font-weight: 600;
+
+}
+
+
+
+/* --  text-center class -- */
+.text-center{
+    text-align: center;
+}
+
+
+.text-align-justify {
+    text-align: justify;
+}
+
+.text-align-right {
+    text-align: right;
+}
+
+
+
+/*--  Section Class  --*/
+section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /*margin-bottom: 30px;*/                            /* --------------------------------------*/
+} 
+
+
+section:nth-child(2n) {
+    background-color: #191919;
+    /*background-color: #1b1e32;*/
+
+}
+
+section:nth-child(2n + 1) {
+    background-color: #0b0b0b;
+    /*background-color: #141627;*/
+}
+
+
+.section-heading {
+    width: auto;
+    padding: 20px 10px 10px;
+    font-weight: 400;
+
+    transition: position 10s top 10s, left 10s;            /* --------------------------------------*/
+}
+
+/*.section-heading:hover{                              /* --------------------------------------                    
+    position: relative;
+    top: 4px;
+    left: 4px;
+}*/
+
+.section-heading span {
+    font-size: 40px;
+    color: #ffffff;
+    display: inline-block;
+    padding-top: 10px;
+    margin-right: 0.5rem;
+}
+
+
+
+
+
+
+/*---   Skill Section        --- */
+
+
+/* setting background-color */
+
+.mb-blue {
+    background-color: #0176bc;
+}
+
+.mb-orange {
+    background-color: #e54c21;
+}
+
+.mb-yellow {
+    background-color: #e4a126;
+}
+
+.mb-teal {
+    background-color: #0b8176;
+}
+
+.mb-light-purple {
+    background-color: #5b4282;
+}
+
+.mb-red {
+    background-color: #ec2025;
+}
+
+.m-blue {
+    color: #2857a4;
+}
+
+
+/*Percentage Classes */
+
+.fifty-percent {
+    height: inherit;
+    width: 50%;
+}
+
+.eighty-percent {
+    height: inherit;
+    width: 80%;
+}
+
+.ninety-percent {
+    height: inherit;
+    width: 90%;
+}
+
+.ninety-five-percent {
+    height: inherit;
+    width: 95%;
+}
+
+.fifty-percent {
+    height: inherit;
+    width: 50%;
+}
+
+/*----------------------------*/
+
+/*#certifications{
+    background-color: white;
+    height: 50vh;
+    color: black;
+}*/
+
+
+
+
+/*#social {
+  position: fixed;
+  top: 25%;
+  left: 0;
+  line-height: 1;
+}
+
+#social .social-btn {
+  display: block;
+  padding: 10px 13px;
+  color: #ffffff;
+}
+
+#social .social-img {
+  width: 15px;
+}
+
+#facebook {
+  background-color: ;
+}
+
+#facebook:hover {
+  background-color: #3b5998;
+}
+
+#linkedin {
+  background-color: ;
+}
+
+#linkedin:hover {
+  background-color: #0077b5;
+}
+
+#twitter {
+  background-color: ;
+}
+
+#twitter:hover {
+  background-color: #83c3f3;
+}
+
+#gmail {
+  background-color: ;
+}
+
+#gmail:hover {
+  background-color: #dd4b39;
+}
+
+#whatsapp {
+  background-color: ;
+}
+
+#whatsapp:hover {
+  background-color: #6ba92f;
+}
+
+#mail {
+  background-color: ;
+}
+
+#mail:hover {
+  background-color: #ed4926;
+}*/
+
+
+
+
+@media screen and (max-width: 600px){
+    .timeline-divider{
+        left: 5%;
+    }
+
+    .timeline-box{
+        left: 5% !important;            
+        width: 80%;
+    }
+
+
+
+
+}
