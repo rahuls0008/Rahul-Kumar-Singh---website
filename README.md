@@ -1,4 +1,4 @@
-# Rahul-Kumar-Singh-website
+# My Website
 My first Frontend project
 
 This page my first fronteng page created using HTML, CSS
