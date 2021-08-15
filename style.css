@@ -16,7 +16,7 @@ body::-webkit-scrollbar {            /*  ---------------------------------------
 	/*background-color: #0b0b0b;*/
     background-image: url(static/background-images-2/laptop.jpg);
 	background-attachment: fixed;
-    background-position: center;
+    background-position: 0% 25%;
 	background-size: cover;
 	padding: 1.2rem;
 	/*box-sizing: border-box;                                        /*--------------------------------------------------------*/*/
@@ -78,10 +78,7 @@ body::-webkit-scrollbar {            /*  ---------------------------------------
 	transition: all 0.3s ease-in-out;
 }
 
-#my-name:hover{
-	color: #ffffff;
-	font-size: 3.2rem;
-}
+
 
 .social-icons li a i{
 	padding: 12px;
