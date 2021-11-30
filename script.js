@@ -1,5 +1,5 @@
 
-// ------------------  Smooth Scroll  ----------//
+// -------------------------------------------  Smooth Scroll  -----------------------------------------//
 
 
 /*
@@ -41,18 +41,21 @@ for(var i = 0; i < navMenuAnchorTags.length; i++){
 
 var interval;       // *** make var interval global
 
-var navMenuAnchorTags = document.querySelectorAll('.nav-menu a');
+var navMenuAnchorTags = document.querySelectorAll('.nav-menu a');           //Fetch all the Anchor Tags
 console.log(navMenuAnchorTags);    //returns array with all <a>
 
+
 for(var i = 0; i < navMenuAnchorTags.length; i++){
-	navMenuAnchorTags[i].addEventListener('click',function(event){
+	
+	navMenuAnchorTags[i].addEventListener('click',function(event){           //Hnadle Click Event for each Link  
+		
 		event.preventDefault();   //prevents default behavior of the element (here default onclick behavior of Anchor Tag is removed)
 		
 		var targetSectionID = this.textContent.trim().toLowerCase();  // fetch textContent of current Anchor Tag -> trim to remove extra spaces -> convert to lower case
 																	//  <a>  Skills  </a>        ->  skills
-
 		console.log(targetSectionID);	  // click on link n observe console
 
+		
 		var targetSection = document.getElementById(targetSectionID);      //fetch ID
 		console.log(targetSection);
 		
@@ -67,8 +70,8 @@ for(var i = 0; i < navMenuAnchorTags.length; i++){
 	}); 
 }
 
-//*** implement scrollVertically function separately 
-function scrollVertically(targetSection){                  // pass targetSection to the function( since the var is in previous func)
+//** implement scrollVertically function separately 
+function scrollVertically(targetSection){                  // pass targetSection to the function (since that is in previous func)
 	var targetSectionCoordinates = targetSection.getBoundingClientRect();
 
 	if(targetSectionCoordinates.top <= 0){
@@ -82,11 +85,20 @@ function scrollVertically(targetSection){                  // pass targetSection
 
 
 
-// Handle scroll event on Window 
-// Check that skills sections container is currently visible or not
-// Ensure that initial width of colored skill divs is Zero --> intiliased/reset to 0 width value
-// As soon as it is visible Start animation on every skill --> increase skill widh from 0 to skill level
-// Store skill level --> HTML with the help data attribute
+
+
+
+
+//------------------------------------------------   Auto Fill Skill Bar  ---------------------------------------------------//
+           
+            // Method 1  : Auto Fill all Skill Bars at once when Skill Section appears
+
+/*
+
+// Handle scroll event on Window to Check whether skills is currently visible or not
+// Intiliased/Reset the bar width to 0 
+// As soon as it is visible Start animation on every skill --> increase skill widh from 0 to target width(skill level)
+															// Store target skill level in HTML with the help data attribute
 
 
 var progressBars = document.querySelectorAll('.skill-progress > div');   // Fetch all the Progress Bars [outer div]
@@ -106,10 +118,11 @@ function initialiseBars() {
 }
     
 
-       // ** NOT VAR because we want different width for each iteration  LET IS IMPORTANT **//
+       // ** NOT VAR because we want different width for each iteration  LET IS IMPORTANT  **
+
 function fillBars(){
-	for(let bar of progressBars){
-		let targetWidth = bar.getAttribute('data-bar-width');             // ** NOT VAR because we want different width for each iteration  **//
+	for(let bar of progressBars){                            // ** NOT VAR because we want different width for each iteration  **
+		let targetWidth = bar.getAttribute('data-bar-width');             
 		let currentWidth = 0;
 		let interval = setInterval(function(){
 			if(currentWidth > targetWidth){
@@ -139,5 +152,83 @@ function checkScroll(){
 		initialiseBars();  
 	}
 }
+
+
+*/
+
+
+
+//---------------  Improved Auto Fill Skill Bar  ------------------------//
+               // Method 2  : Auto Fill Each Skill Bar Separately when it appears      
+
+
+
+
+// Handle scroll event on Window to Check whether skill Bar (For Each Bar Separately) is currently visible or not
+// Intiliased/Reset the bar width to 0 
+// As soon as it is visible Start animation on every skill --> increase skill widh from 0 to target width(skill level)
+															// Store target skill level in HTML with the help data attribute
+
+
+var progressBars = document.querySelectorAll(".skill-progress > div");   // Fetch all the Progress Bars [outer div]
+
+window.addEventListener("scroll", checkScroll);
+//OR
+//window.addEventListener("load", checkScroll);    // This event fills the progress bars if they are displayed on the screen when the page is loaded.
+
+
+
+//Initialise Each Bar
+for (var bar of progressBars) {
+    initialiseBar(bar);          //Function to Initialise each bar
+}
+
+//Initialise Bars
+function initialiseBar(bar) {
+    bar.setAttribute("data-visited", false);
+    bar.style.width = 0 + '%';
+}
+
+
+// This function uses a for loop for individual progress bars.   //check for each bar instead of skills section entirely
+function checkScroll() {
+
+    for (let bar of progressBars) {                            // ** NOT VAR because we want different width for each iteration  **
+        var barCoordinates = bar.getBoundingClientRect();                                  // (for above code only NOT HERE -check above)
+        console.log(barCoordinates);
+        if ((bar.getAttribute("data-visited") == "false") &&
+            (barCoordinates.top <= (window.innerHeight - barCoordinates.height))) {
+            bar.setAttribute("data-visited", true);
+            fillBar(bar);
+        } else if (barCoordinates.top > window.innerHeight) {
+            bar.setAttribute("data-visited", false);
+            initialiseBar(bar);
+        } 
+
+    }
+}
+
+
+
+// Fill The Bars
+function fillBar(bar) {
+
+    var currentWidth = 0;
+    var targetWidth = bar.getAttribute("data-bar-width");
+    var interval = setInterval(function () {
+        if (currentWidth >= targetWidth) {
+            clearInterval(interval);
+            return;
+        }
+        currentWidth++;  
+        bar.style.width = currentWidth + '%';           //update the width of the bar to currentWidth
+    }, 15);
+
+}
+
+
+
+
+
 
 
